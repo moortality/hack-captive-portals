@@ -22,3 +22,4 @@ sudo ./hack-captive.sh
 ```
 
 > Tested in Ubuntu 16.04 with different Captive portals in airports and hotels all over the world.
+> Modified to work on modern systems, tested with Kali Rolling 2020.2

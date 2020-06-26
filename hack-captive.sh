@@ -16,17 +16,18 @@
 #        VERSION:  1.0                                                        #
 #        CREATED:  16.12.2016 - 23:59                                         #
 #       REVISION:  ---                                                        #
-#      COPYRIGHT:  2016 Stanislav "systematicat" Kotivetc                     #
+#      COPYRIGHT:  2016 Stanislav "systematicat" Kotivetc                     #   
+#       MODIFIED TO WORK BY: moortality                                       #
 #        LICENSE:  WTFPL v2                                                   #
 # =========================================================================== #
 
 # Find the initial parameters of wireless interface.
-interface="$(ip -o -4 route show to default | awk '/dev/ {print $5}')"
-localip="$(ip -o -4 route get 1 | awk '/src/ {print $7}')"
-wifissid="$(iw dev "$interface" link | awk '/SSID/ {print $NF}')"
-gateway="$(ip -o -4 route show to default | awk '/via/ {print $3}')"
-broadcast="$(ip -o -4 addr show dev "$interface" | awk '/brd/ {print $6}')"
-ipmask="$(ip -o -4 addr show dev "$interface" | awk '/inet/ {print $4}')"
+interface="$(ip -o -4 route show to default | awk '/dev/ {print $5}'| xargs -n1 | sort -u | xargs)"
+localip="$(ip -o -4 route get 1 | awk '/src/ {print $7}'| xargs -n1 | sort -u | xargs)"
+wifissid="$(iw dev "$interface" link | awk '/SSID/ {print $NF}'| xargs -n1 | sort -u | xargs)"
+gateway="$(ip -o -4 route show to default | awk '/via/ {print $3}'| xargs -n1 | sort -u | xargs)"
+broadcast="$(ip -o -4 addr show dev "$interface" | awk '/brd/ {print $6}'| xargs -n1 | sort -u | xargs)"
+ipmask="$(ip -o -4 addr show dev "$interface" | awk '/inet/ {print $4}'| xargs -n1 | sort -u | xargs)"
 netmask="$(printf "%s\n" "$ipmask" | cut -d "/" -f 2)"
 netaddress="$(sipcalc "$ipmask" | awk '/Network address/ {print $NF}')"
 network="$netaddress/$netmask"

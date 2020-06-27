@@ -1,4 +1,4 @@
-## Hack Captive portals script
+## Hack Captive portals script that works again!
 
 This script is using MAC-spoofing technique. This method is the only one which is present in all wireless and some wired  
 Captive portals by design. Once a host is authorized by the Captive portal, its MAC and IP address are allowed  
@@ -16,10 +16,11 @@ lobby this may be less difficult than it seems.
 You need `sipcalc` and `nmap` for this script. Then download .sh script and run it. 
 ```
 sudo apt -y install sipcalc nmap
-wget https://raw.githubusercontent.com/systematicat/hack-captive-portals/master/hack-captive.sh
+wget https://raw.githubusercontent.com/moortality/hack-captive-portals/master/hack-captive.sh
 sudo chmod u+x hack-captive.sh
 sudo ./hack-captive.sh
 ```
 
 > Tested in Ubuntu 16.04 with different Captive portals in airports and hotels all over the world.
+>
 > Modified to work on modern systems, tested with Kali Rolling 2020.2
